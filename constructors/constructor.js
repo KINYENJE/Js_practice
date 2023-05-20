@@ -1,6 +1,6 @@
 // create a mouse object that has two properties and two methods
 
-let mouse = {}
+let mouse = {}   /**  literal notation */
 
 mouse.name = 'Mickey'
 mouse.color = 'black'
