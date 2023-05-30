@@ -14,18 +14,19 @@
 
 /*Code 02  USING SETTIMEOUT function*/
 
-// function houseOne(){
-//     console.log('Paper delivered to house 1')
-// }
-// function houseTwo(){
-//     setTimeout(() => console.log('Paper delivered to house 2'), 3000)
-// }
-// function houseThree(){
-//     console.log('Paper delivered to house 3')
-// }
-// houseOne()
-// houseTwo()
-// houseThree()
+function houseOne(){
+    console.log('Paper delivered to house 1')
+}
+function houseTwo(){
+    setTimeout(() => console.log('Paper delivered to house 2'), 0)
+}
+function houseThree(){
+    setTimeout(() => console.log('Paper delivered to house 3'), 3000)
+    console.log('Paper delivered to house 4')
+}
+houseOne()
+houseTwo()
+houseThree()
 
 /*Code 03 USING SETTIMEOUT AND A CALLBACK FUNCTION*/
 
@@ -104,49 +105,54 @@
 //    .then(data => console.log(data))
 //    .catch(err => console.log(err))
 
-//Code 07
-function houseOne(){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve('Paper delivered to house 1')
-        }, 1000)
-    })
-}
-function houseTwo(){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve('Paper delivered to house 2')
-        }, 5000)
-    })
-}
-function houseThree(){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve('Paper delivered to house 3')
-        }, 2000)
-    })
-}
-async function getPaid(){
-    try {
-        const houseOneWait = await houseOne()
-        const houseTwoWait = await houseTwo()
-        const houseThreeWait = await houseThree()
-        console.log(houseOneWait)
-        console.log(houseTwoWait)
-        console.log(houseThreeWait)
-    } catch (error) {
-        console.log('iko error')
-        
-    }
-}
+//Code 07 AYNC AWAT
 
-getPaid()
+// function houseOne(){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve('Paper delivered to house 1')
+//         }, 1000)
+//     })
+// }
+// function houseTwo(){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve('Paper delivered to house 2')
+//         }, 5000)
+//     })
+// }
+// function houseThree(){
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             resolve('Paper delivered to house 3')
+//         }, 2000)
+//     })
+// }
+// async function getPaid(){
+//     try {
+//         const houseOneWait = await houseOne()
+//         const houseTwoWait = await houseTwo()
+//         const houseThreeWait = await houseThree()
+//         console.log(houseOneWait)
+//         console.log(houseTwoWait)
+//         console.log(houseThreeWait)
+//     } catch (error) {
+//         console.log('iko error')
+        
+//     }
+// }
+
+// getPaid()
 
 //Code 08
 // async function getACuteDogPhoto(){
-//     const res = await fetch('https://dog.ceo/api/breeds/image/random')
-//     const data = await res.json()
-//     console.log(data)
+//     try {
+//         const res = await fetch('https://dog.ceo/api/breeds/image/random')
+//         const data =await res.json()
+//         console.log(data)
+//     } catch (error) {
+//         console.log('maajabu' + error)
+//     }
 // }
 // getACuteDogPhoto()
 
