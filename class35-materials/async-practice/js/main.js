@@ -18,10 +18,10 @@ function houseOne(){
     console.log('Paper delivered to house 1')
 }
 function houseTwo(){
-    setTimeout(() => console.log('Paper delivered to house 2'), 0)
+    setTimeout(() => console.log('Paper delivered to house 2'), 4000)
 }
 function houseThree(){
-    setTimeout(() => console.log('Paper delivered to house 3'), 3000)
+    setTimeout(() => console.log('Paper delivered to house 3'), 2000)
     console.log('Paper delivered to house 4')
 }
 houseOne()
