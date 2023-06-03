@@ -61,10 +61,17 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
              */
             app.use(bodyParser.urlencoded({extended:true }))
 
+
+            // /** teach server to be able to read JSON */   FOR THE PUT method
+            app.use(bodyParser.json())
+
+            // /** Then, we have to tell Express to make this public folder accessible to the public by using a built-in middleware called express.static */  FOR THE PUT method
+            app.use(express.static('public'));
+
             app.get('/', (req,res) => {
 
                 /** get collections from the database */
-                const cursor = db.collection('quotes')
+                db.collection('quotes')
                     .find()
                     .toArray()
                     .then(results => {
@@ -75,7 +82,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
                     .catch(error => console.error(error))
 
 
-            })
+            });
 
             app.post('/quotes', (req,res) => {
                 /** send quotes from form to collection in database */
@@ -86,11 +93,25 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
                         res.redirect('/')
                     })
                     
-                })
+            });
+
+            app.put('/quotes', (req,res) => {
+                console.log(req.body)
+                // quotesCollection
+                //     .findOneAndUpdate(query, update, options)
+                //     .then(result => {
+
+                //     })
+                //     .catch(error => console.error(error))
+            });
+
+            
 
             app.listen(3000, () => {
                 console.log('running on port 3000')
-            })
+            });
+
+            
 
     })
     .catch(error => console.error(error))
