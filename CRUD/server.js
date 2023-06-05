@@ -99,8 +99,11 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
                     
             });
 
+            /** updating a collection */
             app.put('/quotes', (req,res) => {
-                console.log(req.body)
+               /** ongoDB Collections come with a method called findOneAndUpdate. This method lets us find and change one item in the database
+                * .findOneAndUpdate(query, update, options)
+                */
                 quotesCollection
                     .findOneAndUpdate({name: 'Kinyenje'}, {
                         $set:{
@@ -118,14 +121,21 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
                     .catch(error => console.error(error))
             });
 
-           
-            
-            
-
-           
-
-           
-
+        /** delete event (method) being handled in the server side */
+        app.delete('/quotes', (req, res) => {
+            /** deleteOne. It lets us remove a document from the database. It takes in two parameters: query and options. 
+             * .deleteOne(query, options)
+            */
+            quotesCollection.deleteOne({name: req.body.name} )
+            .then(result => {
+                /** if there are no more Kinyenje quotes, result.deletedCount will be 0.  */
+                if (result.deletedCount ===0){
+                    return res.json('No quote to be deleted')
+                }
+                res.json(`Deleted Kinyenje`)
+            })
+            .catch(error => console.error(error))
+        })
             
 
     })
