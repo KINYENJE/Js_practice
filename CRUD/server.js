@@ -45,6 +45,10 @@ const connectionString = 'mongodb+srv://kinyenje:trustworthiness01@cluster0.xztg
 
 MongoClient.connect(connectionString, {useUnifiedTopology: true,})
     .then(client => {
+
+        app.listen(3000, () => {
+            console.log('running on port 3000')
+        });
         console.log('Connected to Database')
         /** Naming the db as crud test */
         const db = client.db('crud-test')
@@ -97,19 +101,30 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
 
             app.put('/quotes', (req,res) => {
                 console.log(req.body)
-                // quotesCollection
-                //     .findOneAndUpdate(query, update, options)
-                //     .then(result => {
-
-                //     })
-                //     .catch(error => console.error(error))
+                quotesCollection
+                    .findOneAndUpdate({name: 'Kinyenje'}, {
+                        $set:{
+                            name: req.body.name,
+                            quote: req.body.quote,
+                        },
+                    }, 
+                    { 
+                        upsert: true
+                    })
+                    .then(result => {
+                        console.log(result)
+                        res.json('Success')
+                    })
+                    .catch(error => console.error(error))
             });
 
+           
+            
             
 
-            app.listen(3000, () => {
-                console.log('running on port 3000')
-            });
+           
+
+           
 
             
 

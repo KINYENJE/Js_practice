@@ -1,11 +1,9 @@
 /** e will also create an external JavaScript file to execute a PUT request. According to Express conventions, this JavaScript is kept in a folder called public */
 
 
-const update = document.querySelector('#update')
-
-update.addEventListener('click', () => {
+const update = document.querySelector('#update-button').addEventListener('click', (_) => {
     /* send PUT request here.In this case, let’s say we want to send the request to /quotes. We’ll set endpoint to /quotes.*/
-    fetch('/quotes', {
+    fetch("/quotes", {
         method: 'put',
             /** tell the server we’re sending JSON data by setting the Content-Type headers to application/json. */
         headers: {'Content-Type': 'application/json'},
@@ -13,9 +11,19 @@ update.addEventListener('click', () => {
         body: JSON.stringify({
             name: 'Nyandarua',
             quote: 'Cash crop ni waru',
-        }),
+        })
     })
+        .then(res => {
+            if(res.ok) return res.json()
+        })
+        .then(response => {
+            console.log(response)
+            window.location.reload(true)
+        })
+    
 })
+
+
 
 
 
