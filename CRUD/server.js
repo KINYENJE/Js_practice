@@ -46,8 +46,8 @@ const connectionString = 'mongodb+srv://kinyenje:trustworthiness01@cluster0.xztg
 MongoClient.connect(connectionString, {useUnifiedTopology: true,})
     .then(client => {
 
-        app.listen(3000, () => {
-            console.log('running on port 3000')
+        app.listen(3030, () => {
+            console.log('running on port 3030')
         });
         console.log('Connected to Database')
         /** Naming the db as crud test */
@@ -84,7 +84,6 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
                         res.render('index.ejs', {quotes:results})
                     })
                     .catch(error => console.error(error))
-
 
             });
 
@@ -123,6 +122,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true,})
 
         /** delete event (method) being handled in the server side */
         app.delete('/quotes', (req, res) => {
+            console.log(req.body) 
             /** deleteOne. It lets us remove a document from the database. It takes in two parameters: query and options. 
              * .deleteOne(query, options)
             */
